@@ -13,5 +13,3 @@ All about - Contracts
 - testnet 
 
 - hardhat, remix environment
-
-- 
