@@ -1,4 +1,6 @@
 All about - Contracts
 
-Why the contract is called smart contract?
+- Why the contract is called smart contract?
+
+- try to understand it with the example of shopkeeper where you want to buy a packet of chips
 
