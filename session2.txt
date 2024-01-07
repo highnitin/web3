@@ -4,3 +4,5 @@ All about - Contracts
 
 - try to understand it with the example of shopkeeper where you want to buy a packet of chips
 
+- just vending machine replaces the shopkeeper (middleman here) 
+
