@@ -8,3 +8,6 @@ All about - Contracts
 
 - what is node.js? why do we use it here?
 
+- gas fee (advantages of gas fee)
+
+- testnet 
