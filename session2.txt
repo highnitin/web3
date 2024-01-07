@@ -11,3 +11,7 @@ All about - Contracts
 - gas fee (advantages of gas fee)
 
 - testnet 
+
+- hardhat, remix environment
+
+- 
