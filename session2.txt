@@ -1,2 +1,3 @@
 All about - Contracts
 
+Why the contract is called smart contract?
