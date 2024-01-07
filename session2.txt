@@ -6,3 +6,5 @@ All about - Contracts
 
 - just vending machine replaces the shopkeeper (middleman here) 
 
+- what is node.js? why do we use it here?
+
