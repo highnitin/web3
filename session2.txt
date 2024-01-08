@@ -13,3 +13,5 @@ All about - Contracts
 - testnet 
 
 - hardhat, remix environment
+
+- start with documentation, video lecture and metaschool
