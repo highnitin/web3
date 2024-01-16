@@ -1,0 +1,139 @@
+What are ERC standards?
+
+- ERC stands for "Ethereum Request for Comments," and it is a set of standards or proposals for Ethereum improvement. These standards define the rules and specifications that developers should follow when creating tokens, smart contracts, and decentralized applications (DApps) on the Ethereum blockchain. ERC standards ensure interoperability and compatibility between different projects and platforms within the Ethereum ecosystem.
+
+Here are some of the well-known ERC standards:
+
+1. **ERC-20:** This is one of the most widely adopted standards for fungible tokens on the Ethereum blockchain. It defines a set of rules and functions that a token contract must implement, such as transferring tokens, checking balances, and approving spending allowances.
+
+2. **ERC-721:** This standard is used for non-fungible tokens (NFTs). Unlike ERC-20 tokens, which are interchangeable with each other, ERC-721 tokens are unique and distinct. Each token has its own specific properties, making it suitable for representing ownership of digital or physical assets.
+
+3. **ERC-223:** This is an improvement over ERC-20 with additional functionality and reduced risk of lost tokens during transactions. ERC-223 allows token transfers to trigger smart contract functions, preventing tokens from being sent to contracts that are unable to handle them.
+
+4. **ERC-777:** This standard is an upgrade to ERC-20, introducing new features such as advanced token management, hooks, and operators. It aims to provide more flexibility and extensibility compared to ERC-20.
+
+5. **ERC-1155:** This standard is a multi-token standard that allows a single contract to manage multiple types of tokens, including both fungible and non-fungible tokens. It is designed to be more efficient in terms of gas usage and storage.
+
+6. **ERC-1400:** This standard is focused on security token offerings (STOs) and defines a set of rules for issuing and managing security tokens. It includes features like transfer restrictions, partitioning, and document management.
+
+7. **ERC-1644 and ERC-1643:** These standards introduce a general permission management system for tokens. ERC-1644 allows tokens to have multiple controllers, and ERC-1643 defines how controllers are added and removed.
+
+8. **ERC-1820:** This is a standard for a global registry of contract names. It allows smart contracts to register their interface and make their functionality discoverable by other contracts.
+
+These are just a few examples of ERC standards, and new proposals and standards are continually being discussed and developed by the Ethereum community. Each ERC standard serves a specific purpose within the Ethereum ecosystem, providing guidelines and best practices for developers building decentralized applications and tokens.
+
+
+- Using example and visual presentations.
+
+Let's use ERC-20 as an example, which is a standard for fungible tokens on the Ethereum blockchain. In this visual example, we'll create a simple representation of an ERC-20 token and its functionalities.
+
+1. ERC-20 Token Structure:
+
+Imagine you want to create a token named "ExampleToken."
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract ExampleToken {
+    string public name = "ExampleToken";
+    string public symbol = "EXT";
+    uint8 public decimals = 18; // Decimals determine the precision of the token.
+
+    mapping(address => uint256) private balances;
+    mapping(address => mapping(address => uint256)) private allowances;
+
+    uint256 private totalSupply;
+
+    constructor(uint256 initialSupply) {
+        balances[msg.sender] = initialSupply;
+        totalSupply = initialSupply;
+    }
+
+    function balanceOf(address account) public view returns (uint256) {
+        return balances[account];
+    }
+
+    function transfer(address to, uint256 amount) public returns (bool) {
+        require(amount <= balances[msg.sender], "Insufficient balance");
+
+        balances[msg.sender] -= amount;
+        balances[to] += amount;
+
+        emit Transfer(msg.sender, to, amount);
+
+        return true;
+    }
+
+    function approve(address spender, uint256 amount) public returns (bool) {
+        allowances[msg.sender][spender] = amount;
+
+        emit Approval(msg.sender, spender, amount);
+
+        return true;
+    }
+
+    function transferFrom(address from, address to, uint256 amount) public returns (bool) {
+        require(amount <= balances[from], "Insufficient balance");
+        require(amount <= allowances[from][msg.sender], "Insufficient allowance");
+
+        balances[from] -= amount;
+        balances[to] += amount;
+        allowances[from][msg.sender] -= amount;
+
+        emit Transfer(from, to, amount);
+
+        return true;
+    }
+
+    function allowance(address owner, address spender) public view returns (uint256) {
+        return allowances[owner][spender];
+    }
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+
+2. Visual Representation:
+
+Consider the ERC-20 token as a visual entity with properties:
+
+Token Name: ExampleToken
+Symbol: EXT
+Decimals: 18 (for precision)
+Now, let's visualize the main functionalities:
+
+Balance: Each Ethereum address has a balance of ExampleToken.
+Transfer: Users can transfer ExampleToken to other addresses.
+Approval: Users can approve other addresses to spend a certain amount of their tokens.
+Allowance: Users can check the amount approved for a spender.
+Here's a simple visual representation:
+
++--------------------------------------------------------+
+|                    ERC-20 ExampleToken                  |
+|--------------------------------------------------------|
+| Token Name: ExampleToken                                |
+| Symbol: EXT                                              |
+| Decimals: 18                                             |
+|--------------------------------------------------------|
+| Total Supply:                                          |
+|                    +-------------------------+         |
+|                    |       Token Holders      |         |
+|                    +-------------------------+         |
+|--------------------------------------------------------|
+| Functions:                                             |
+|                    +-------------------------+         |
+|                    |        BalanceOf        |         |
+|                    +-------------------------+         |
+|                    |        Transfer         |         |
+|                    +-------------------------+         |
+|                    |         Approve         |         |
+|                    +-------------------------+         |
+|                    |      TransferFrom       |         |
+|                    +-------------------------+         |
+|                    |        Allowance        |         |
+|                    +-------------------------+         |
++--------------------------------------------------------+
+
+
+In this visual, you have an ERC-20 token named ExampleToken with its basic properties and functions. Users can check their balances, transfer tokens, approve other addresses, check allowances, and more. Each function contributes to the overall functionality of the ERC-20 token.
